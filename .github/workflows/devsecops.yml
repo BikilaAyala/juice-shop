@@ -1,0 +1,24 @@
+name: DevSecOps Security Pipeline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  security:
+    runs-on: [self-hosted, linux, x64]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t juice-shop:week7 .
+
+      - name: Trivy CRITICAL vulnerability scan
+        run: |
+          trivy image \
+            --severity CRITICAL \
+            --exit-code 1 \
+            juice-shop:week7
