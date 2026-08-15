@@ -1,4 +1,4 @@
-name: Semgrep Security Scan
+name: Run Semgrep
 
 on:
   push:
@@ -15,4 +15,4 @@ jobs:
         run: pip install semgrep
 
       - name: Run Semgrep
-        run: semgrep --config=auto --severity ERROR .
+        run: semgrep --config=auto --severity ERROR --error .
