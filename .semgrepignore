@@ -1,0 +1,21 @@
+# Test fixtures intentionally contain fake JWTs/secrets
+test/
+frontend/src/app/last-login-ip/last-login-ip.component.spec.ts
+
+# Existing upstream CI workflow contains a curl-pipe-shell pattern
+.github/workflows/ci.yml
+
+# OWASP Juice Shop intentionally vulnerable challenge code
+routes/currentUser.ts
+routes/login.ts
+routes/search.ts
+routes/userProfile.ts
+data/static/codefixes/
+data/static/users.yml
+frontend/src/app/app.guard.spec.ts
+.github/workflows/update-challenges-www-legacy.yml
+.github/workflows/update-challenges-ebook.yml
+data/static/users.yml
+frontend/src/app/app.guard.spec.ts
+/data/static/users.yml
+/frontend/src/app/app.guard.spec.ts
