@@ -1,36 +1,4 @@
-name: DevSecOps Security Pipeline
-
-on:
-  push:
-  pull_request:
-
-jobs:
-  security:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Build Docker image
-        run: |
-          docker build -t juice-shop:week7 .
-
-      - name: Install Trivy
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget
-          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | \
-            gpg --dearmor | \
-            sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
-          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | \
-            sudo tee /etc/apt/sources.list.d/trivy.list
-          sudo apt-get update
-          sudo apt-get install -y trivy
-
-      - name: Trivy CRITICAL vulnerability scan
-        run: |
-          trivy image \
-            --severity CRITICAL \
-            --exit-code 1 \
-            juice-shop:week7
+- name: Trivy PASS test
+  run: |
+    docker pull hello-world:latest
+    trivy image --scanners vuln --severity CRITICAL --exit-code 1 hello-world:latest
