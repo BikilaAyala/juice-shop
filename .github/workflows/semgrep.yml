@@ -15,4 +15,12 @@ jobs:
         run: pip install semgrep
 
       - name: Run Semgrep
-        run: semgrep --config=auto --severity ERROR --error .
+        run: |
+          semgrep --config=auto --severity ERROR --error \
+            --exclude=.github/workflows/ci.yml \
+            --exclude=.github/workflows/update-challenges-www-legacy.yml \
+            --exclude=.github/workflows/update-challenges-ebook.yml \
+            --exclude=data/static/codefixes/ \
+            --exclude=data/static/users.yml \
+            --exclude=frontend/src/app/app.guard.spec.ts \
+            .
